@@ -1,1 +1,1 @@
-# neurosymbolic-lgbtphobia-detection
+# Semantic graphs
