@@ -2,8 +2,11 @@ from createPath import *
 from CreatePolarsDataframe import *
 from Labels import *
 from TranslateText import *
+from AMR import *
+import csv
 
-
+# this program calls the csv with the training csv, translates it into english and saves the translated text into a new csv.
+# it also parses the translated data using the AMR parser and saves the resulting tokens, nodes, edges and roots into four csvs.
 if __name__ == "__main__":
 
     # object that creates a Path object with the route to the csv file that contains the training csv file.
@@ -33,3 +36,26 @@ if __name__ == "__main__":
     
     # save the encoded labels in a csv.
     df_labels.write_csv("labels.csv")
+    
+    # instantiate the AMRParser.
+    amr = AMR("AMR3-structbart-L")
+    
+    tokens, nodes, edges, roots = amr.createAMR(polars_dataframe_en['content'])
+    
+
+    # Save each list to a different csv file
+    with open('tokens.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(tokens)
+
+    with open('nodes.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(nodes)
+
+    with open('edges.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(edges)
+        
+    with open('roots.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(roots)

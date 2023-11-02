@@ -1,3 +1,4 @@
+from CSVReader import *
 from createPath import *
 #from CreatePytorchDataset import *
 #from Visualization import *
@@ -11,17 +12,20 @@ from AMR import *
 if __name__ == "__main__":
 
     # object that creates a Path object with the route to the csv file that contains the training csv file.
-    cvs_importer = CSVImporter(path_object_training_csv)
+    #cvs_importer = CSVImporter(path_object_training_csv)
 
     # object that creates a polars dataframe from the csv file.
-    polars_dataframe_es = cvs_importer.get_dataframe()
+    #polars_dataframe_es = cvs_importer.get_dataframe()
 
-    # instantiate the AMRParser.
-    amr = AMR("AMR3-structbart-L")
+    cvs_reader = CSVReader("tokens.csv")
+    tokens = cvs_reader.read()
+    edges = cvs_reader.read()
+    labels = cvs_reader.read()
+    nodes = cvs_reader.read()
+    roots =cvs_reader.read()
     
-    tokens, nodes, edges, roots = amr.createAMR(polars_dataframe_en['content'])
-    
-    print(type(tokens), type(nodes), type(edges), type(roots))
+    print(len(tokens[0]))
+    #print(len(tokens), len(edges), len(labels), len(nodes), len(roots))
     
     #print(amr.generateAMRTree())
 

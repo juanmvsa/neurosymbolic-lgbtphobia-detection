@@ -20,8 +20,6 @@ class Labels:
         
         self.encoded_labels = encoder.fit_transform(labels_vals.tolist())
         
-        # return encoded_column
-        print(labels_valss.inverse_transform)
 
         return self.encoded_labels
 
