@@ -21,7 +21,7 @@ class Labels:
         self.encoded_labels = encoder.fit_transform(labels_vals.tolist())
         
         # return encoded_column
-        #new_df = self.df.with_columns([encoded_column_name, pl.lit(self.encoded_labels)])
+        print(labels_valss.inverse_transform)
 
         return self.encoded_labels
 

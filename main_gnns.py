@@ -3,8 +3,6 @@ from createPath import *
 #from Visualization import *
 from CreateEmbeddings import *
 from CreatePolarsDataframe import *
-from Labels import *
-from TranslateText import *
 from AMR import *
 #import torch
 #from PIL import Image
@@ -18,36 +16,12 @@ if __name__ == "__main__":
     # object that creates a polars dataframe from the csv file.
     polars_dataframe_es = cvs_importer.get_dataframe()
 
-    # object that gets the (encoded) labels in original the polars dataframe.
-    labels = Labels(polars_dataframe_es, ["label"])
-
-    # object that translates the text in the polars Dataframe.
-    translator = TranslateText("es", "en", polars_dataframe_es, "content")
-
-    # uncomment to translate your text.
-    # this new Dataframe contains the translated text.
-    polars_dataframe_en = translator.translate_text()
-
-    # uncomment to save your translated text in a csv.
-    polars_dataframe_en.write_csv("translated_csv.csv")
-
-    # variable that stores the encoded labels in a list.
-    encoded_labels = labels.fit_transform()
-    
     # instantiate the AMRParser.
     amr = AMR("AMR3-structbart-L")
     
     tokens, nodes, edges, roots = amr.createAMR(polars_dataframe_en['content'])
     
-    df_tokens = pl.DataFrame({'tokens': tokens})
-    df_nodes = pl.DataFrame({'nodes': nodes})
-    df_edges = pl.DataFrame({'edges': edge})
-    df_roots = pl.DataFrame({'roots': roots})
-        
-        
-    df_tokens.write_csv("tokens_100.csv")
-    df_nodes.write_csv("nodes_100.csv")
-    df_roots.write_csv("roots_100.csv")
+    print(type(tokens), type(nodes), type(edges), type(roots))
     
     #print(amr.generateAMRTree())
 
