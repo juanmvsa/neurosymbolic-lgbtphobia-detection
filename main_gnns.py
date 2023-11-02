@@ -1,4 +1,5 @@
 from CSVReader import *
+from CSVPolars import *
 from createPath import *
 #from CreatePytorchDataset import *
 #from Visualization import *
@@ -17,15 +18,9 @@ if __name__ == "__main__":
     # object that creates a polars dataframe from the csv file.
     #polars_dataframe_es = cvs_importer.get_dataframe()
 
-    cvs_reader = CSVReader("tokens.csv")
-    tokens = cvs_reader.read()
-    edges = cvs_reader.read()
-    labels = cvs_reader.read()
-    nodes = cvs_reader.read()
-    roots =cvs_reader.read()
+    df_parsed = pl.DataFrame("parsed_corpus.csv")
     
-    print(len(tokens[0]))
-    #print(len(tokens), len(edges), len(labels), len(nodes), len(roots))
+    
     
     #print(amr.generateAMRTree())
 

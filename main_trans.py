@@ -42,20 +42,8 @@ if __name__ == "__main__":
     
     tokens, nodes, edges, roots = amr.createAMR(polars_dataframe_en['content'])
     
-
-    # Save each list to a different csv file
-    with open('tokens.csv', 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(tokens)
-
-    with open('nodes.csv', 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(nodes)
-
-    with open('edges.csv', 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(edges)
-        
-    with open('roots.csv', 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(roots)
+    csv_amr_writer = CSVWriterAMRParsing(tokens, nodes, edges, roots)
+    
+    parse_amr_to_dataframe = CSVtoPolars("tokens.csv", "nodes.csv", "edges.csv", "roots.csv")
+    
+    parse_amr_to_dataframe.write_csv("parsed_corpus.csv")
