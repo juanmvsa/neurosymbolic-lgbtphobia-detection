@@ -1,6 +1,3 @@
-<img width="661" alt="image" src="https://github.com/juanmvsa/neurosymbolic-lgbtphobia-detection/assets/37162022/21e4d34f-2360-4532-8f51-00e805098ba3"># Semantic graphs
-
-
 # References
 
 |Title                                                                                                                                  |
